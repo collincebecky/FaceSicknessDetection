@@ -1,4 +1,5 @@
-# Django File Upload Tutorial
+# FACE SICKNESS DETECTION
+An aproach to sickness diagnostic with computer vision
 
 [![Python Version](https://img.shields.io/badge/python-3.7-brightgreen.svg)](https://python.org)
 [![Django Version](https://img.shields.io/badge/django-2.1-brightgreen.svg)](https://djangoproject.com)
