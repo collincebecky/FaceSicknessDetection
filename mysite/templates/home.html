@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12">
+        <div class="card mb-4">
+          <div class="card-body">
+			  <h2>Upload Prospect</h2>
+			  <form method="post" enctype="multipart/form-data">
+			    {% csrf_token %}
+			    <input type="file" name="document">
+			    <button type="submit">Upload file</button>
+			  </form>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% if url and status %}
+  
+<div class="frame">
+    <img src={{url}} alt="Nature">
+</div>
+
+<span> </span>
+<div class="center">
+  <p >
+
+    HEALTH DIAGNOSIS: 
+
+  </p >
+  <p style="color: #00ff65;">
+
+    {{status}} 
+
+  </p>
+
+ 
+</div>
+
+{% endif %}
+{% endblock %}
