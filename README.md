@@ -4,7 +4,7 @@ An aproach to sickness diagnostic with computer vision
 [![Python Version](https://img.shields.io/badge/python-3.7-brightgreen.svg)](https://python.org)
 [![Django Version](https://img.shields.io/badge/django-2.1-brightgreen.svg)](https://djangoproject.com)
 
-![Image description](link-to-image)
+
 
 Subscribe to my YouTube channel: [youtube.com/VitorFreitas](https://www.youtube.com/VitorFreitas?sub_confirmation=1)
 
@@ -40,3 +40,6 @@ The project will be available at **127.0.0.1:8000**.
 ## License
 
 The source code is released under the [MIT License](https://github.com/sibtc/django-upload-example/blob/master/LICENSE).
+## Gallary
+![HEALTHY](https://github.com/collinsokumu/FaceSicknessDetection/blob/master/healthy.png)
+![SICK](https://github.com/collinsokumu/FaceSicknessDetection/blob/master/sick.png)
