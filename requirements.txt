@@ -7,6 +7,6 @@ facenet_pytorch
 #torch torchvision
 numpy
 pandas
-https://download.pytorch.org/whl/torch_stable.html
+#https://download.pytorch.org/whl/torch_stable.html
 torch==1.4.0+cpu 
 torchvision==0.5.0+cpu
