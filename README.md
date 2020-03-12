@@ -6,7 +6,7 @@ An aproach to sickness diagnostic with computer vision
 
 
 
-YOUTUBE AS YOUTUBE: [youtube.com/CollinceOkumu](https://www.youtube.com/VitorFreitas?sub_confirmation)
+YOUTUBE AS YOUTUBE: [youtube.com/CollinceOkumu](https://www.youtube.com/channel/UCVCm8N9cAZqSgfWbpD0s_mA?view_as=subscriber)
 
 ## Running the Project Locally
 
