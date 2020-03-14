@@ -4,6 +4,7 @@ Pillow==5.3.0
 pytz==2018.4
 dlib
 facenet_pytorch
+face_alignment
 #torch torchvision
 numpy
 pandas
