@@ -57,7 +57,7 @@ The source code is released under the [MIT License](https://github.com/sibtc/dja
 ![HEALTHY](https://github.com/collinsokumu/FaceSicknessDetection/blob/master/healthy1.png)
 ![SICK](https://github.com/collinsokumu/FaceSicknessDetection/blob/master/sick.png)
 ## References
-[Illness is written all over your face](https://www.nature.com/articles/d41586-018-00125-2)
+[Illness Is Written All Over Your Face](https://www.nature.com/articles/d41586-018-00125-2)
 
 [Detecting Visually Observable Disease Symptoms from Face](https://www.researchgate.net/publication/307615602_Detecting_Visually_Observable_Disease_Symptoms_from_Faces)
 ## FUTURE WORK
