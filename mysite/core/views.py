@@ -20,6 +20,8 @@ import face_alignment
 from skimage import io
 from pathlib import Path
 import pickle
+import dlib
+import cv2
 
 # cuda for CUDA
 
@@ -44,10 +46,11 @@ resnet = InceptionResnetV1(pretrained='vggface2').eval().to(device)
 face_alignment.FaceAlignment(face_alignment.LandmarksType._2D,face_detector='sfd',device='cpu')
 
 classifier=None
-model_path= "/home/brance/Mine/Prototypes/Face Ui/trained_faces_model.clf"
+model_path= os.path.abspath("../FaceSicknessDetection/trained_faces_model.clf")
     
 # Loading model 
 try:
+    print("Model_path :",model_path)	
     with open(model_path, 'rb') as f:
         classifier = pickle.load(f)
         print("Loaded classifier ...................")
@@ -73,9 +76,9 @@ def run(request):
         print("Name ....",uploaded_file.name)
         fs = FileSystemStorage()
 
-        if Path('/home/brance/Mine/Prototypes/Face Ui/media/candidate/output.jpeg').is_file():
+        if Path(os.path.abspath("../FaceSicknessDetection/media/candidate/output.jpeg")).is_file():
             print ("File exist")
-            os.remove("/home/brance/Mine/Prototypes/Face Ui/media/candidate/output.jpeg")
+            os.remove(os.path.abspath("../FaceSicknessDetection/media/candidate/output.jpeg"))
         name = fs.save("output.jpeg", uploaded_file)
         context['url'] = fs.url(name)
         print("")
@@ -90,21 +93,11 @@ def run(request):
 def diagnose_image():
 
     
-    """
-    input = io.imread('/home/brance/Mine/Prototypes/Face Ui/media')
-    preds = fa.get_landmarks(input)
-
-    print("LANDMARKS ....",preds)
-    print("We should be seeing Landmarks ..........................")
-    """
-
-           
-            #pass
-
-    #out_image.save("../../media/output.jpeg")
+    draw_landmarks()
     def collate_fn(x):return x[0]
 
-    dataset = datasets.ImageFolder("../Face Ui/media/")
+    dataset = datasets.ImageFolder(os.path.abspath("../FaceSicknessDetection/media"))
+
     dataset.idx_to_class = {i:c for c, i in dataset.class_to_idx.items()}
     loader = DataLoader(dataset, collate_fn=collate_fn, num_workers=workers)
 
@@ -153,7 +146,40 @@ def diagnose_image():
          #   out_image=out_image.crop((left-(out_image_w*.1), top-(out_image_h*.17), right+(out_image_w*.1), bottom+(out_image_h*.2)))
 
 
+def draw_landmarks():
     
+    detector = dlib.get_frontal_face_detector()
+
+    predictor = dlib.shape_predictor(os.path.abspath("../FaceSicknessDetection/shape_predictor_68_face_landmarks.dat"))
+
+    img = cv2.imread(os.path.abspath("../FaceSicknessDetection/media/candidate/output.jpeg"))
+
+    # convert to grayscale
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # detect faces in the image
+    faces_in_image = detector(img_gray, 0)
+
+   # loop through each face in image
+    for face in faces_in_image:
+
+        # assign the facial landmarks
+        landmarks = predictor(img_gray, face)
+
+        # unpack the 68 landmark coordinates from the dlib object into a list 
+        landmarks_list = []
+        for i in range(0, landmarks.num_parts):
+            landmarks_list.append((landmarks.part(i).x, landmarks.part(i).y))
+
+        # for each landmark, plot and write number
+        for landmark_num, xy in enumerate(landmarks_list, start = 1):
+            cv2.circle(img, (xy[0], xy[1]), 1, (50,205,50), -1)
+            #cv2.putText(img, str(landmark_num),(xy[0]-7,xy[1]+5), cv2.FONT_HERSHEY_SIMPLEX, 0.4,(255,255,255), 1)
+
+    cv2.imwrite(os.path.abspath("../FaceSicknessDetection/media/candidate/output.jpeg"),img)     
+    #
+    #cv2.imshow('img',img)
+    cv2.waitKey(0)  
 
 
 
